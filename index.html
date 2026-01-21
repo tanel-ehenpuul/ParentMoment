@@ -43,6 +43,8 @@
             color: var(--text-midnight-navy);
             min-height: 100vh;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Hero Section - 60% Cloud White */
@@ -244,6 +246,7 @@
 
         .scenario-section.active {
             display: block;
+            padding-top: 3rem;
         }
 
         .scenario-card {
@@ -382,7 +385,7 @@
             gap: 0.5rem;
             font-size: 0.8rem;
             font-weight: 700;
-            color: var(--trust-blue);
+            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 0.75rem;
@@ -394,42 +397,26 @@
         }
 
         .script-box {
-            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
-            border-radius: 16px;
-            padding: 1.5rem;
-            border-left: 4px solid var(--trust-blue);
-            position: relative;
-        }
-
-        .script-box::before {
-            content: '"';
-            position: absolute;
-            top: -10px;
-            left: 1rem;
-            font-size: 4rem;
-            color: var(--trust-blue);
-            opacity: 0.2;
-            font-family: Georgia, serif;
-            line-height: 1;
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 1.25rem;
         }
 
         .script-text {
-            font-size: 1.15rem;
-            line-height: 1.7;
+            font-size: 1.1rem;
+            line-height: 1.8;
             color: var(--text-midnight-navy);
-            font-style: italic;
         }
 
         .script-text strong {
-            color: var(--trust-blue);
-            font-weight: 700;
+            color: var(--text-midnight-navy);
+            font-weight: normal;
         }
 
         /* Feedback Section */
         .feedback-section {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 1.5rem;
+            border-radius: 12px;
+            padding: 1.25rem;
             text-align: center;
         }
 
@@ -450,49 +437,47 @@
         .feedback-btn {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.875rem 1.5rem;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            font-weight: 600;
+            gap: 0.4rem;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
             cursor: pointer;
-            border: 2px solid transparent;
+            border: 1px solid transparent;
             transition: all 0.3s ease;
         }
 
         .feedback-btn.positive {
-            background: #dcfce7;
-            color: #166534;
-            border-color: #86efac;
+            background: rgba(52, 211, 153, 0.1);
+            color: #065f46;
+            border-color: rgba(52, 211, 153, 0.3);
         }
 
         .feedback-btn.positive:hover {
-            background: #bbf7d0;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+            background: rgba(52, 211, 153, 0.2);
+            transform: translateY(-1px);
         }
 
         .feedback-btn.negative {
-            background: #fee2e2;
-            color: #991b1b;
-            border-color: #fca5a5;
+            background: rgba(244, 114, 102, 0.1);
+            color: #9a3c33;
+            border-color: rgba(244, 114, 102, 0.3);
         }
 
         .feedback-btn.negative:hover {
-            background: #fecaca;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+            background: rgba(244, 114, 102, 0.2);
+            transform: translateY(-1px);
         }
 
         .feedback-btn svg {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
         }
 
         /* Back Button */
         .back-nav {
             max-width: 700px;
-            margin: 2rem auto 0;
+            margin: 2rem auto 3rem;
             text-align: center;
         }
 
@@ -528,6 +513,7 @@
             text-align: center;
             padding: 2rem 1rem;
             font-size: 0.9rem;
+            margin-top: auto;
         }
 
         footer a {
@@ -720,6 +706,7 @@
             .hero-inner {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 1rem;
             }
 
             .hero-text {
@@ -729,7 +716,7 @@
 
             .hero-image {
                 order: 2;
-                margin-top: 2rem;
+                margin-top: 0;
             }
 
             .hero-image img {
@@ -757,7 +744,7 @@
             <div class="hero-text">
                 <h1>Lapsel on igav ja Sinul on vaja tööle keskenduda?</h1>
                 <p>Vali, kui palju aega Sul on <strong>hetkel</strong> ettevalmistuseks. Anname Sulle stsenaariumi, mis hoiab lapse iseseisvalt tegevuses 15-30+ minutit.</p>
-                <a href="#selection-section" class="hero-cta">
+                <a href="#selection-section" class="hero-cta" onclick="scrollToSelection(event)">
                     Vaata lahendusi
                     <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
                 </a>
@@ -843,7 +830,6 @@
         <div class="scenario-card">
             <div class="scenario-header coral">
                 <button class="close-btn" onclick="closeScenario()">×</button>
-                <span class="scenario-badge coral">🆘 30 sekundi lahendus</span>
                 <h2 class="scenario-title">Missioon "Värvidetektiiv"</h2>
             </div>
             <div class="scenario-body">
@@ -867,7 +853,7 @@
                     </div>
                     <div class="script-box">
                         <p class="script-text">
-                            "Kuula tähelepanelikult. Meie köögis on peidus <strong>5 asja, mis on PUNAST värvi</strong>. Sinu missioon on need ükshaaval üles leida ja tuua need vaikselt (nagu ninja) siia ukse taha hunnikusse. <strong>Ära lase vaenlasel end kuulda!</strong> Aeg läks!"
+                            "Kuula tähelepanelikult. Meie köögis on peidus <strong>5 asja, mis on punast värvi</strong>. Sinu missioon on need ükshaaval üles leida ja tuua need vaikselt (nagu ninja) siia ukse taha hunnikusse. <strong>Ära lase vaenlasel end kuulda!</strong> Aeg läks!"
                         </p>
                     </div>
                 </div>
@@ -901,7 +887,6 @@
         <div class="scenario-card">
             <div class="scenario-header sun">
                 <button class="close-btn" onclick="closeScenario()">×</button>
-                <span class="scenario-badge sun">☕ 2 minuti lahendus</span>
                 <h2 class="scenario-title">Missioon "Kaisukaru Kindlus"</h2>
             </div>
             <div class="scenario-body">
@@ -961,7 +946,6 @@
         <div class="scenario-card">
             <div class="scenario-header sage">
                 <button class="close-btn" onclick="closeScenario()">×</button>
-                <span class="scenario-badge sage">🤖 10 minuti lahendus</span>
                 <h2 class="scenario-title">Missioon "Leiutaja Töötuba"</h2>
             </div>
             <div class="scenario-body">
@@ -1026,7 +1010,22 @@
     </footer>
 
     <script>
+        function scrollToSelection(event) {
+            event.preventDefault();
+            const selection = document.getElementById('selection-section');
+            const selectionTop = selection.getBoundingClientRect().top + window.pageYOffset - 10;
+            
+            // On mobile, scroll to show selection section at the very top
+            window.scrollTo({
+                top: selectionTop,
+                behavior: 'smooth'
+            });
+        }
+
         function showScenario(id) {
+            // Hide hero section
+            document.querySelector('.hero').style.display = 'none';
+            
             // Hide selection
             document.getElementById('selection-section').style.display = 'none';
             
@@ -1050,6 +1049,9 @@
             document.querySelectorAll('.scenario-section').forEach(el => {
                 el.classList.remove('active');
             });
+            
+            // Show hero section again
+            document.querySelector('.hero').style.display = 'block';
             
             // Show selection
             document.getElementById('selection-section').style.display = 'block';
