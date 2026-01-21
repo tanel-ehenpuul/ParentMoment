@@ -263,6 +263,19 @@
             position: relative;
             background: white;
             border-top: 4px solid var(--text-muted);
+            text-align: center;
+        }
+
+        .scenario-header-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem;
+        }
+
+        .scenario-header-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .scenario-header.coral { border-top-color: var(--sos-coral); }
@@ -624,12 +637,55 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            position: relative;
         }
 
         .announcement-bar svg {
             width: 18px;
             height: 18px;
             fill: currentColor;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 0.25rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 0.2rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            color: white;
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: #059669;
+        }
+
+        @media (max-width: 640px) {
+            .lang-switcher {
+                position: static;
+                transform: none;
+                margin-left: auto;
+            }
         }
 
         /* Hero with image */
@@ -735,22 +791,26 @@
     <!-- Announcement Bar -->
     <div class="announcement-bar">
         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-        <span>100% tasuta – registreerimine pole vajalik</span>
+        <span data-i18n="announcement">100% free – no registration required</span>
+        <div class="lang-switcher">
+            <button class="lang-btn" onclick="setLanguage('et')">ET</button>
+            <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+        </div>
     </div>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-inner">
             <div class="hero-text">
-                <h1>Lapsel on igav ja Sinul on vaja tööle keskenduda?</h1>
-                <p>Vali, kui palju aega Sul on <strong>hetkel</strong> ettevalmistuseks. Anname Sulle stsenaariumi, mis hoiab lapse iseseisvalt tegevuses 15-30+ minutit.</p>
+                <h1 data-i18n="heroTitle">Is your child bored and you need to focus on work?</h1>
+                <p data-i18n="heroDesc">Choose how much time you have <strong>right now</strong> for preparation. We'll give you a scenario that keeps your child busy independently for 15-30+ minutes.</p>
                 <a href="#selection-section" class="hero-cta" onclick="scrollToSelection(event)">
-                    Vaata lahendusi
+                    <span data-i18n="heroCta">View solutions</span>
                     <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
                 </a>
             </div>
             <div class="hero-image">
-                <img src="hero.png" alt="Lapsevanem töötab rahulikult, laps mängib iseseisvalt">
+                <img src="hero.png" alt="Parent working peacefully, child playing independently">
             </div>
         </div>
     </section>
@@ -758,90 +818,93 @@
     <!-- Selection Section -->
     <section class="selection-section" id="selection-section">
         <div class="selection-header">
-            <h2>Kui palju aega Sul praegu ettevalmistuseks on?</h2>
-            <p>Vali üks variant ja saa koheselt kasutamisvalmis skript</p>
+            <h2 data-i18n="selectionTitle">How much time do you have for preparation right now?</h2>
+            <p data-i18n="selectionDesc">Choose an option and get a ready-to-use script instantly</p>
         </div>
 
         <div class="selection-grid">
             <!-- 30 seconds card -->
             <div class="time-card coral" onclick="showScenario('scenario-1')">
                 <div class="card-icon">
-                    <img src="icon-detective.png" alt="Värvidetektiiv">
+                    <img src="icon-detective.png" alt="Color Detective">
                 </div>
                 <div class="card-times">
                     <div class="time-box prep">
-                        <span class="label">Ettevalmistus</span>
-                        <span class="value">30 sek</span>
+                        <span class="label" data-i18n="prepLabel">Preparation</span>
+                        <span class="value" data-i18n="prep30sec">30 sec</span>
                     </div>
                     <div class="time-box activity">
-                        <span class="label">Laps tegevuses</span>
+                        <span class="label" data-i18n="activityLabel">Child engaged</span>
                         <span class="value">5 min</span>
                     </div>
                 </div>
-                <div class="card-title">Värvidetektiiv</div>
-                <p class="card-desc">Kiire lahendus ilma ettevalmistuseta. Ütle lapsele üks lause ja ta tegutseb iseseisvalt!</p>
-                <button class="card-button coral">Päästa mind →</button>
+                <div class="card-title" data-i18n="card1Title">Color Detective</div>
+                <p class="card-desc" data-i18n="card1Desc">Quick solution with no preparation. Say one sentence to your child and they'll be busy independently!</p>
+                <button class="card-button coral" data-i18n="card1Button">Save me →</button>
             </div>
 
             <!-- 2 minutes card -->
             <div class="time-card sun" onclick="showScenario('scenario-2')">
                 <div class="card-icon">
-                    <img src="icon-fort.png" alt="Kaisukaru Kindlus">
+                    <img src="icon-fort.png" alt="Teddy Bear Fort">
                 </div>
                 <div class="card-times">
                     <div class="time-box prep">
-                        <span class="label">Ettevalmistus</span>
+                        <span class="label" data-i18n="prepLabel">Preparation</span>
                         <span class="value">2 min</span>
                     </div>
                     <div class="time-box activity">
-                        <span class="label">Laps tegevuses</span>
+                        <span class="label" data-i18n="activityLabel">Child engaged</span>
                         <span class="value">15-20 min</span>
                     </div>
                 </div>
-                <div class="card-title">Kaisukaru Kindlus</div>
-                <p class="card-desc">Haara patjad ja pleed. Laps ehitab pimeda koopa ja sukeldub mängu.</p>
-                <button class="card-button sun">Vaata lahendust →</button>
+                <div class="card-title" data-i18n="card2Title">Teddy Bear Fort</div>
+                <p class="card-desc" data-i18n="card2Desc">Grab pillows and a blanket. Your child builds a dark cave and dives into play.</p>
+                <button class="card-button sun" data-i18n="card2Button">View solution →</button>
             </div>
 
             <!-- 10 minutes card -->
             <div class="time-card sage" onclick="showScenario('scenario-3')">
                 <div class="card-icon">
-                    <img src="icon-inventor.png" alt="Leiutaja Töötuba">
+                    <img src="icon-inventor.png" alt="Inventor's Workshop">
                 </div>
                 <div class="card-times">
                     <div class="time-box prep">
-                        <span class="label">Ettevalmistus</span>
+                        <span class="label" data-i18n="prepLabel">Preparation</span>
                         <span class="value">10 min</span>
                     </div>
                     <div class="time-box activity">
-                        <span class="label">Laps tegevuses</span>
+                        <span class="label" data-i18n="activityLabel">Child engaged</span>
                         <span class="value">30+ min</span>
                     </div>
                 </div>
-                <div class="card-title">Leiutaja Töötuba</div>
-                <p class="card-desc">Pane kokku leiutaja kast taaskasutusest. Robot-missioon tagab pikema keskendumise.</p>
-                <button class="card-button sage">Alusta missiooni →</button>
+                <div class="card-title" data-i18n="card3Title">Inventor's Workshop</div>
+                <p class="card-desc" data-i18n="card3Desc">Put together an inventor's box from recyclables. The robot mission ensures longer focus.</p>
+                <button class="card-button sage" data-i18n="card3Button">Start mission →</button>
             </div>
         </div>
     </section>
 
-    <!-- Scenario 1: Värvidetektiiv -->
+    <!-- Scenario 1: Color Detective -->
     <section class="scenario-section" id="scenario-1">
         <div class="scenario-card">
             <div class="scenario-header coral">
                 <button class="close-btn" onclick="closeScenario()">×</button>
-                <h2 class="scenario-title">Missioon "Värvidetektiiv"</h2>
+                <div class="scenario-header-icon">
+                    <img src="icon-detective.png" alt="Color Detective">
+                </div>
+                <h2 class="scenario-title" data-i18n="s1Title">Mission "Color Detective"</h2>
             </div>
             <div class="scenario-body">
                 <div class="prep-section">
                     <div class="prep-label">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        Sinu ettevalmistus
+                        <span data-i18n="s1PrepLabel">Your preparation</span>
                     </div>
                     <div class="prep-content">
-                        <ul class="prep-list">
-                            <li>Kutsu laps enda juurde</li>
-                            <li>Tee tõsine ja salapärane nägu – nagu oleks oluline missioon!</li>
+                        <ul class="prep-list" data-i18n="s1PrepList">
+                            <li>Call your child over</li>
+                            <li>Make a serious, mysterious face – like it's an important mission!</li>
                         </ul>
                     </div>
                 </div>
@@ -849,25 +912,25 @@
                 <div class="script-section">
                     <div class="script-label">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-                        Ütle lapsele see lause
+                        <span data-i18n="scriptLabel">Say this to your child</span>
                     </div>
                     <div class="script-box">
-                        <p class="script-text">
-                            "Kuula tähelepanelikult. Meie köögis on peidus <strong>5 asja, mis on punast värvi</strong>. Sinu missioon on need ükshaaval üles leida ja tuua need vaikselt (nagu ninja) siia ukse taha hunnikusse. <strong>Ära lase vaenlasel end kuulda!</strong> Aeg läks!"
+                        <p class="script-text" data-i18n="s1Script">
+                            "Listen carefully. There are 5 red things hidden in our kitchen. Your mission is to find them one by one and bring them quietly (like a ninja) to pile them up behind this door. Don't let the anyone hear you! Time starts now!"
                         </p>
                     </div>
                 </div>
 
                 <div class="feedback-section">
-                    <p class="feedback-question">Kas see aitas Sul tööks rahu saada?</p>
+                    <p class="feedback-question" data-i18n="feedbackQuestion">Did this help you get some peace to work?</p>
                     <div class="feedback-buttons">
                         <button class="feedback-btn positive" onclick="sendFeedback('scenario-1', 'positive')">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
-                            Toimis! Sain rahu.
+                            <span data-i18n="feedbackPositive">It worked! Got peace.</span>
                         </button>
                         <button class="feedback-btn negative" onclick="sendFeedback('scenario-1', 'negative')">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/></svg>
-                            Ei toiminud / Laps tüdines
+                            <span data-i18n="feedbackNegative">Didn't work / Child got bored</span>
                         </button>
                     </div>
                 </div>
@@ -877,30 +940,33 @@
         <div class="back-nav">
             <button class="back-btn" onclick="closeScenario()">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-                Tagasi valikute juurde
+                <span data-i18n="backButton">Back to options</span>
             </button>
         </div>
     </section>
 
-    <!-- Scenario 2: Kaisukaru Kindlus -->
+    <!-- Scenario 2: Teddy Bear Fort -->
     <section class="scenario-section" id="scenario-2">
         <div class="scenario-card">
             <div class="scenario-header sun">
                 <button class="close-btn" onclick="closeScenario()">×</button>
-                <h2 class="scenario-title">Missioon "Kaisukaru Kindlus"</h2>
+                <div class="scenario-header-icon">
+                    <img src="icon-fort.png" alt="Teddy Bear Fort">
+                </div>
+                <h2 class="scenario-title" data-i18n="s2Title">Mission "Teddy Bear Fort"</h2>
             </div>
             <div class="scenario-body">
                 <div class="prep-section">
                     <div class="prep-label">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        Sinu ettevalmistus (2 min)
+                        <span data-i18n="s2PrepLabel">Your preparation (2 min)</span>
                     </div>
                     <div class="prep-content">
-                        <ul class="prep-list">
-                            <li>Võta diivanilt 2 patja</li>
-                            <li>Haara üks pleed või tekk</li>
-                            <li>Lisa lapse lemmik-kaisukas</li>
-                            <li>Aseta need kõik ühte kohta (nt elutuppa)</li>
+                        <ul class="prep-list" data-i18n="s2PrepList">
+                            <li>Grab 2 pillows from the couch</li>
+                            <li>Get a blanket or throw</li>
+                            <li>Add your child's favorite stuffed animal</li>
+                            <li>Place everything in one spot (e.g., living room)</li>
                         </ul>
                     </div>
                 </div>
@@ -908,25 +974,25 @@
                 <div class="script-section">
                     <div class="script-label">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-                        Ütle lapsele see lause
+                        <span data-i18n="scriptLabel">Say this to your child</span>
                     </div>
                     <div class="script-box">
-                        <p class="script-text">
-                            "Kaisukaru on väsinud ja vajab hädasti kodu, <strong>kuhu valgus sisse ei paista</strong>. Sinu ülesanne on ehitada talle nendest asjadest pime koobas. Kui koobas on valmis, siis <strong>poe sinna sisse ja vaata, kas on ikka kottpime</strong>. Ma tulen kontrollin 15 minuti pärast."
+                        <p class="script-text" data-i18n="s2Script">
+                            "Teddy bear is tired and desperately needs a home <strong>where no light can get in</strong>. Your task is to build a dark cave from these things. When the cave is ready, <strong>crawl inside and check if it's completely dark</strong>. I'll come check in 15 minutes."
                         </p>
                     </div>
                 </div>
 
                 <div class="feedback-section">
-                    <p class="feedback-question">Kas see aitas Sul tööks rahu saada?</p>
+                    <p class="feedback-question" data-i18n="feedbackQuestion">Did this help you get some peace to work?</p>
                     <div class="feedback-buttons">
                         <button class="feedback-btn positive" onclick="sendFeedback('scenario-2', 'positive')">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
-                            Toimis! Sain rahu.
+                            <span data-i18n="feedbackPositive">It worked! Got peace.</span>
                         </button>
                         <button class="feedback-btn negative" onclick="sendFeedback('scenario-2', 'negative')">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/></svg>
-                            Ei toiminud / Laps tüdines
+                            <span data-i18n="feedbackNegative">Didn't work / Child got bored</span>
                         </button>
                     </div>
                 </div>
@@ -936,31 +1002,34 @@
         <div class="back-nav">
             <button class="back-btn" onclick="closeScenario()">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-                Tagasi valikute juurde
+                <span data-i18n="backButton">Back to options</span>
             </button>
         </div>
     </section>
 
-    <!-- Scenario 3: Leiutaja Töötuba -->
+    <!-- Scenario 3: Inventor's Workshop -->
     <section class="scenario-section" id="scenario-3">
         <div class="scenario-card">
             <div class="scenario-header sage">
                 <button class="close-btn" onclick="closeScenario()">×</button>
-                <h2 class="scenario-title">Missioon "Leiutaja Töötuba"</h2>
+                <div class="scenario-header-icon">
+                    <img src="icon-inventor.png" alt="Inventor's Workshop">
+                </div>
+                <h2 class="scenario-title" data-i18n="s3Title">Mission "Inventor's Workshop"</h2>
             </div>
             <div class="scenario-body">
                 <div class="prep-section">
                     <div class="prep-label">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        Sinu ettevalmistus (10 min)
+                        <span data-i18n="s3PrepLabel">Your preparation (10 min)</span>
                     </div>
                     <div class="prep-content">
-                        <ul class="prep-list">
-                            <li>Otsi üks tühi pappkast või pesukauss</li>
-                            <li>Viska sinna "ohutut prügi": tühjad WC-paberi rullid, munakarbid, kortsus paber</li>
-                            <li>Lisa jupike nööri ja maalriteip (või pulgaliim)</li>
-                            <li>Lisa paar vildikat joonistamiseks</li>
-                            <li>Pane kast keset põrandat</li>
+                        <ul class="prep-list" data-i18n="s3PrepList">
+                            <li>Find an empty cardboard box or laundry basket</li>
+                            <li>Throw in "safe garbage": empty toilet paper rolls, egg cartons, crumpled paper</li>
+                            <li>Add a piece of string and painter's tape (or glue stick)</li>
+                            <li>Add a couple of markers for drawing</li>
+                            <li>Place the box in the middle of the floor</li>
                         </ul>
                     </div>
                 </div>
@@ -968,25 +1037,25 @@
                 <div class="script-section">
                     <div class="script-label">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-                        Ütle lapsele see lause
+                        <span data-i18n="scriptLabel">Say this to your child</span>
                     </div>
                     <div class="script-box">
-                        <p class="script-text">
-                            "Meie kosmoselaev läks katki ja meil on vaja uut robotit, kes selle ära parandaks. Selles kastis on <strong>kõik vajalikud osad ühe super-roboti ehitamiseks</strong>. Sinu ülesanne on see valmis ehitada. Ma panen taimeri käima ja <strong>tulen vaatan su leiutist täpselt 30 minuti pärast</strong>. Head ehitamist!"
+                        <p class="script-text" data-i18n="s3Script">
+                            "Our spaceship broke down and we need a new robot to fix it. This box contains <strong>all the parts needed to build a super-robot</strong>. Your task is to build it. I'm starting the timer and <strong>will come see your invention in exactly 30 minutes</strong>. Happy building!"
                         </p>
                     </div>
                 </div>
 
                 <div class="feedback-section">
-                    <p class="feedback-question">Kas see aitas Sul tööks rahu saada?</p>
+                    <p class="feedback-question" data-i18n="feedbackQuestion">Did this help you get some peace to work?</p>
                     <div class="feedback-buttons">
                         <button class="feedback-btn positive" onclick="sendFeedback('scenario-3', 'positive')">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
-                            Toimis! Sain rahu.
+                            <span data-i18n="feedbackPositive">It worked! Got peace.</span>
                         </button>
                         <button class="feedback-btn negative" onclick="sendFeedback('scenario-3', 'negative')">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/></svg>
-                            Ei toiminud / Laps tüdines
+                            <span data-i18n="feedbackNegative">Didn't work / Child got bored</span>
                         </button>
                     </div>
                 </div>
@@ -996,7 +1065,7 @@
         <div class="back-nav">
             <button class="back-btn" onclick="closeScenario()">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-                Tagasi valikute juurde
+                <span data-i18n="backButton">Back to options</span>
             </button>
         </div>
     </section>
@@ -1006,10 +1075,133 @@
 
     <!-- Footer -->
     <footer>
-        <p>© 2024 KidHelper MVP Eksperiment · Loodud lapsevanematele testimiseks</p>
+        <p data-i18n="footer">© 2024 ParentMoment.com · Created for parents</p>
     </footer>
 
     <script>
+        // Translation system
+        const translations = {
+            et: {
+                announcement: "100% tasuta – registreerimine pole vajalik",
+                heroTitle: "Lapsel on igav ja Sinul on vaja tööle keskenduda?",
+                heroDesc: "Vali, kui palju aega Sul on <strong>hetkel</strong> ettevalmistuseks. Anname Sulle stsenaariumi, mis hoiab lapse iseseisvalt tegevuses 15-30+ minutit.",
+                heroCta: "Vaata lahendusi",
+                selectionTitle: "Kui palju aega Sul praegu ettevalmistuseks on?",
+                selectionDesc: "Vali üks variant ja saa koheselt kasutamisvalmis skript",
+                prepLabel: "Ettevalmistus",
+                activityLabel: "Laps tegevuses",
+                prep30sec: "30 sek",
+                card1Title: "Värvidetektiiv",
+                card1Desc: "Kiire lahendus ilma ettevalmistuseta. Ütle lapsele üks lause ja ta tegutseb iseseisvalt!",
+                card1Button: "Päästa mind →",
+                card2Title: "Kaisukaru Kindlus",
+                card2Desc: "Haara patjad ja pleed. Laps ehitab pimeda koopa ja sukeldub mängu.",
+                card2Button: "Vaata lahendust →",
+                card3Title: "Leiutaja Töötuba",
+                card3Desc: "Pane kokku leiutaja kast taaskasutusest. Robot-missioon tagab pikema keskendumise.",
+                card3Button: "Alusta missiooni →",
+                footer: "© 2024 ParentMoment.com · Loodud lapsevanematele",
+                // Scenario 1
+                s1Title: 'Missioon "Värvidetektiiv"',
+                s1PrepLabel: "Sinu ettevalmistus",
+                s1PrepList: "<li>Kutsu laps enda juurde</li><li>Tee tõsine ja salapärane nägu – nagu oleks oluline missioon!</li>",
+                s1Script: '"Kuula tähelepanelikult. Meie köögis on peidus <strong>5 asja, mis on punast värvi</strong>. Sinu missioon on need ükshaaval üles leida ja tuua need vaikselt (nagu ninja) siia ukse taha hunnikusse. <strong>Ära lase kellelgi end kuulda!</strong> Aeg läks!"',
+                // Scenario 2
+                s2Title: 'Missioon "Kaisukaru Kindlus"',
+                s2PrepLabel: "Sinu ettevalmistus (2 min)",
+                s2PrepList: "<li>Võta diivanilt 2 patja</li><li>Haara üks pleed või tekk</li><li>Lisa lapse lemmik-kaisukas</li><li>Aseta need kõik ühte kohta (nt elutuppa)</li>",
+                s2Script: '"Kaisukaru on väsinud ja vajab hädasti kodu, <strong>kuhu valgus sisse ei paista</strong>. Sinu ülesanne on ehitada talle nendest asjadest pime koobas. Kui koobas on valmis, siis <strong>poe sinna sisse ja vaata, kas on ikka kottpime</strong>. Ma tulen kontrollin 15 minuti pärast."',
+                // Scenario 3
+                s3Title: 'Missioon "Leiutaja Töötuba"',
+                s3PrepLabel: "Sinu ettevalmistus (10 min)",
+                s3PrepList: '<li>Otsi üks tühi pappkast või pesukauss</li><li>Viska sinna "ohutut prügi": tühjad WC-paberi rullid, munakarbid, kortsus paber</li><li>Lisa jupike nööri ja maalriteip (või pulgaliim)</li><li>Lisa paar vildikat joonistamiseks</li><li>Pane kast keset põrandat</li>',
+                s3Script: '"Meie kosmoselaev läks katki ja meil on vaja uut robotit, kes selle ära parandaks. Selles kastis on <strong>kõik vajalikud osad ühe super-roboti ehitamiseks</strong>. Sinu ülesanne on see valmis ehitada. Ma panen taimeri käima ja <strong>tulen vaatan su leiutist täpselt 30 minuti pärast</strong>. Head ehitamist!"',
+                // Common scenario texts
+                scriptLabel: "Ütle lapsele see lause",
+                feedbackQuestion: "Kas see aitas Sul tööks rahu saada?",
+                feedbackPositive: "Toimis! Sain rahu.",
+                feedbackNegative: "Ei toiminud / Laps tüdines",
+                backButton: "Tagasi valikute juurde",
+                toastPositive: "Tore! Salvestasime Sinu tagasiside. Aitäh!",
+                toastNegative: "Selge, panime kirja. Proovime järgmine kord paremat lahendust!"
+            },
+            en: {
+                announcement: "100% free – no registration required",
+                heroTitle: "Is your child bored and you need to focus on work?",
+                heroDesc: "Choose how much time you have <strong>right now</strong> for preparation. We'll give you a scenario that keeps your child busy independently for 15-30+ minutes.",
+                heroCta: "View solutions",
+                selectionTitle: "How much time do you have for preparation right now?",
+                selectionDesc: "Choose an option and get a ready-to-use script instantly",
+                prepLabel: "Preparation",
+                activityLabel: "Child engaged",
+                prep30sec: "30 sec",
+                card1Title: "Color Detective",
+                card1Desc: "Quick solution with no preparation. Say one sentence to your child and they'll be busy independently!",
+                card1Button: "Save me →",
+                card2Title: "Teddy Bear Fort",
+                card2Desc: "Grab pillows and a blanket. Your child builds a dark cave and dives into play.",
+                card2Button: "View solution →",
+                card3Title: "Inventor's Workshop",
+                card3Desc: "Put together an inventor's box from recyclables. The robot mission ensures longer focus.",
+                card3Button: "Start mission →",
+                footer: "© 2024 ParentMoment.com · Created for parents",
+                // Scenario 1
+                s1Title: 'Mission "Color Detective"',
+                s1PrepLabel: "Your preparation",
+                s1PrepList: "<li>Call your child over</li><li>Make a serious, mysterious face – like it's an important mission!</li>",
+                s1Script: '"Listen carefully. There are <strong>5 red things</strong> hidden in our kitchen. Your mission is to find them one by one and bring them quietly (like a ninja) to pile them up behind this door. <strong>Don\'t let anyone hear you!</strong> Time starts now!"',
+                // Scenario 2
+                s2Title: 'Mission "Teddy Bear Fort"',
+                s2PrepLabel: "Your preparation (2 min)",
+                s2PrepList: "<li>Grab 2 pillows from the couch</li><li>Get a blanket or throw</li><li>Add your child's favorite stuffed animal</li><li>Place everything in one spot (e.g., living room)</li>",
+                s2Script: '"Teddy bear is tired and desperately needs a home <strong>where no light can get in</strong>. Your task is to build a dark cave from these things. When the cave is ready, <strong>crawl inside and check if it\'s completely dark</strong>. I\'ll come check in 15 minutes."',
+                // Scenario 3
+                s3Title: 'Mission "Inventor\'s Workshop"',
+                s3PrepLabel: "Your preparation (10 min)",
+                s3PrepList: '<li>Find an empty cardboard box or laundry basket</li><li>Throw in "safe garbage": empty toilet paper rolls, egg cartons, crumpled paper</li><li>Add a piece of string and painter\'s tape (or glue stick)</li><li>Add a couple of markers for drawing</li><li>Place the box in the middle of the floor</li>',
+                s3Script: '"Our spaceship broke down and we need a new robot to fix it. This box contains <strong>all the parts needed to build a super-robot</strong>. Your task is to build it. I\'m starting the timer and <strong>will come see your invention in exactly 30 minutes</strong>. Happy building!"',
+                // Common scenario texts
+                scriptLabel: "Say this to your child",
+                feedbackQuestion: "Did this help you get some peace to work?",
+                feedbackPositive: "It worked! Got peace.",
+                feedbackNegative: "Didn't work / Child got bored",
+                backButton: "Back to options",
+                toastPositive: "Great! We saved your feedback. Thanks!",
+                toastNegative: "Got it, noted. We'll try a better solution next time!"
+            }
+        };
+
+        let currentLang = localStorage.getItem('kidhelper-lang') || 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('kidhelper-lang', lang);
+            
+            // Update all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+            
+            // Update lang attribute on html element
+            document.documentElement.lang = lang;
+            
+            // Update active button state
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === lang.toUpperCase()) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage(currentLang);
+        });
+
         function scrollToSelection(event) {
             event.preventDefault();
             const selection = document.getElementById('selection-section');
@@ -1067,10 +1259,10 @@
             const toast = document.getElementById('toast');
             
             if (type === 'positive') {
-                toast.textContent = '🎉 Tore! Salvestasime Sinu tagasiside. Aitäh!';
+                toast.textContent = translations[currentLang].toastPositive;
                 toast.classList.add('success');
             } else {
-                toast.textContent = '📝 Selge, panime kirja. Proovime järgmine kord paremat lahendust!';
+                toast.textContent = translations[currentLang].toastNegative;
                 toast.classList.remove('success');
             }
             
