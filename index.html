@@ -786,6 +786,13 @@
                 justify-content: center;
             }
         }
+
+        /* Hide "View solutions" button on desktop - cards are already visible */
+        @media (min-width: 769px) {
+            .hero-cta {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
