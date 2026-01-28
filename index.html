@@ -7,6 +7,7 @@
     <meta name="description" content="Tasuta stsenaariumid lapsevanematele: anna lapsele põnev ülesanne ja saa töörahu. Vali aeg, saa skript.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="37ccdf43-d39a-4980-a269-6f20b00da2df"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -793,8 +794,8 @@
         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
         <span data-i18n="announcement">100% free – no registration required</span>
         <div class="lang-switcher">
-            <button class="lang-btn" onclick="setLanguage('et')">ET</button>
-            <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" onclick="setLanguage('et')" data-umami-event="language-switch" data-umami-event-lang="et">ET</button>
+            <button class="lang-btn active" onclick="setLanguage('en')" data-umami-event="language-switch" data-umami-event-lang="en">EN</button>
         </div>
     </div>
 
@@ -803,8 +804,8 @@
         <div class="hero-inner">
             <div class="hero-text">
                 <h1 data-i18n="heroTitle">Is your child bored and you need to focus on work?</h1>
-                <p data-i18n="heroDesc">Choose how much time you have <strong>right now</strong> for preparation. We'll give you a scenario that keeps your child busy independently for 15-30+ minutes.</p>
-                <a href="#selection-section" class="hero-cta" onclick="scrollToSelection(event)">
+                <p data-i18n="heroDesc">Choose how much time you have <strong>right now</strong> for preparation. We'll give you a scenario that keeps your child busy independently for 5-30+ minutes.</p>
+                <a href="#selection-section" class="hero-cta" onclick="scrollToSelection(event)" data-umami-event="hero-cta-click">
                     <span data-i18n="heroCta">View solutions</span>
                     <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
                 </a>
@@ -840,7 +841,7 @@
                 </div>
                 <div class="card-title" data-i18n="card1Title">Color Detective</div>
                 <p class="card-desc" data-i18n="card1Desc">Quick solution with no preparation. Say one sentence to your child and they'll be busy independently!</p>
-                <button class="card-button coral" data-i18n="card1Button">Save me →</button>
+                <button class="card-button coral" data-i18n="card1Button" data-umami-event="scenario-selected" data-umami-event-scenario="color-detective">Save me →</button>
             </div>
 
             <!-- 2 minutes card -->
@@ -860,7 +861,7 @@
                 </div>
                 <div class="card-title" data-i18n="card2Title">Teddy Bear Fort</div>
                 <p class="card-desc" data-i18n="card2Desc">Grab pillows and a blanket. Your child builds a dark cave and dives into play.</p>
-                <button class="card-button sun" data-i18n="card2Button">View solution →</button>
+                <button class="card-button sun" data-i18n="card2Button" data-umami-event="scenario-selected" data-umami-event-scenario="teddy-bear-fort">View solution →</button>
             </div>
 
             <!-- 10 minutes card -->
@@ -880,7 +881,7 @@
                 </div>
                 <div class="card-title" data-i18n="card3Title">Inventor's Workshop</div>
                 <p class="card-desc" data-i18n="card3Desc">Put together an inventor's box from recyclables. The robot mission ensures longer focus.</p>
-                <button class="card-button sage" data-i18n="card3Button">Start mission →</button>
+                <button class="card-button sage" data-i18n="card3Button" data-umami-event="scenario-selected" data-umami-event-scenario="inventor-workshop">Start mission →</button>
             </div>
         </div>
     </section>
@@ -889,7 +890,7 @@
     <section class="scenario-section" id="scenario-1">
         <div class="scenario-card">
             <div class="scenario-header coral">
-                <button class="close-btn" onclick="closeScenario()">×</button>
+                <button class="close-btn" onclick="closeScenario()" data-umami-event="scenario-closed" data-umami-event-scenario="color-detective">×</button>
                 <div class="scenario-header-icon">
                     <img src="icon-detective.png" alt="Color Detective">
                 </div>
@@ -924,11 +925,11 @@
                 <div class="feedback-section">
                     <p class="feedback-question" data-i18n="feedbackQuestion">Did this help you get some peace to work?</p>
                     <div class="feedback-buttons">
-                        <button class="feedback-btn positive" onclick="sendFeedback('scenario-1', 'positive')">
+                        <button class="feedback-btn positive" onclick="sendFeedback('scenario-1', 'positive')" data-umami-event="feedback" data-umami-event-scenario="color-detective" data-umami-event-type="positive">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
                             <span data-i18n="feedbackPositive">It worked! Got peace.</span>
                         </button>
-                        <button class="feedback-btn negative" onclick="sendFeedback('scenario-1', 'negative')">
+                        <button class="feedback-btn negative" onclick="sendFeedback('scenario-1', 'negative')" data-umami-event="feedback" data-umami-event-scenario="color-detective" data-umami-event-type="negative">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/></svg>
                             <span data-i18n="feedbackNegative">Didn't work / Child got bored</span>
                         </button>
@@ -938,7 +939,7 @@
         </div>
 
         <div class="back-nav">
-            <button class="back-btn" onclick="closeScenario()">
+            <button class="back-btn" onclick="closeScenario()" data-umami-event="back-to-options" data-umami-event-from="color-detective">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
                 <span data-i18n="backButton">Back to options</span>
             </button>
@@ -949,7 +950,7 @@
     <section class="scenario-section" id="scenario-2">
         <div class="scenario-card">
             <div class="scenario-header sun">
-                <button class="close-btn" onclick="closeScenario()">×</button>
+                <button class="close-btn" onclick="closeScenario()" data-umami-event="scenario-closed" data-umami-event-scenario="teddy-bear-fort">×</button>
                 <div class="scenario-header-icon">
                     <img src="icon-fort.png" alt="Teddy Bear Fort">
                 </div>
@@ -986,11 +987,11 @@
                 <div class="feedback-section">
                     <p class="feedback-question" data-i18n="feedbackQuestion">Did this help you get some peace to work?</p>
                     <div class="feedback-buttons">
-                        <button class="feedback-btn positive" onclick="sendFeedback('scenario-2', 'positive')">
+                        <button class="feedback-btn positive" onclick="sendFeedback('scenario-2', 'positive')" data-umami-event="feedback" data-umami-event-scenario="teddy-bear-fort" data-umami-event-type="positive">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
                             <span data-i18n="feedbackPositive">It worked! Got peace.</span>
                         </button>
-                        <button class="feedback-btn negative" onclick="sendFeedback('scenario-2', 'negative')">
+                        <button class="feedback-btn negative" onclick="sendFeedback('scenario-2', 'negative')" data-umami-event="feedback" data-umami-event-scenario="teddy-bear-fort" data-umami-event-type="negative">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/></svg>
                             <span data-i18n="feedbackNegative">Didn't work / Child got bored</span>
                         </button>
@@ -1000,7 +1001,7 @@
         </div>
 
         <div class="back-nav">
-            <button class="back-btn" onclick="closeScenario()">
+            <button class="back-btn" onclick="closeScenario()" data-umami-event="back-to-options" data-umami-event-from="teddy-bear-fort">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
                 <span data-i18n="backButton">Back to options</span>
             </button>
@@ -1011,7 +1012,7 @@
     <section class="scenario-section" id="scenario-3">
         <div class="scenario-card">
             <div class="scenario-header sage">
-                <button class="close-btn" onclick="closeScenario()">×</button>
+                <button class="close-btn" onclick="closeScenario()" data-umami-event="scenario-closed" data-umami-event-scenario="inventor-workshop">×</button>
                 <div class="scenario-header-icon">
                     <img src="icon-inventor.png" alt="Inventor's Workshop">
                 </div>
@@ -1049,11 +1050,11 @@
                 <div class="feedback-section">
                     <p class="feedback-question" data-i18n="feedbackQuestion">Did this help you get some peace to work?</p>
                     <div class="feedback-buttons">
-                        <button class="feedback-btn positive" onclick="sendFeedback('scenario-3', 'positive')">
+                        <button class="feedback-btn positive" onclick="sendFeedback('scenario-3', 'positive')" data-umami-event="feedback" data-umami-event-scenario="inventor-workshop" data-umami-event-type="positive">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
                             <span data-i18n="feedbackPositive">It worked! Got peace.</span>
                         </button>
-                        <button class="feedback-btn negative" onclick="sendFeedback('scenario-3', 'negative')">
+                        <button class="feedback-btn negative" onclick="sendFeedback('scenario-3', 'negative')" data-umami-event="feedback" data-umami-event-scenario="inventor-workshop" data-umami-event-type="negative">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/></svg>
                             <span data-i18n="feedbackNegative">Didn't work / Child got bored</span>
                         </button>
@@ -1063,7 +1064,7 @@
         </div>
 
         <div class="back-nav">
-            <button class="back-btn" onclick="closeScenario()">
+            <button class="back-btn" onclick="closeScenario()" data-umami-event="back-to-options" data-umami-event-from="inventor-workshop">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
                 <span data-i18n="backButton">Back to options</span>
             </button>
@@ -1084,10 +1085,10 @@
             et: {
                 announcement: "100% tasuta – registreerimine pole vajalik",
                 heroTitle: "Lapsel on igav ja Sinul on vaja tööle keskenduda?",
-                heroDesc: "Vali, kui palju aega Sul on <strong>hetkel</strong> ettevalmistuseks. Anname Sulle stsenaariumi, mis hoiab lapse iseseisvalt tegevuses 15-30+ minutit.",
+                heroDesc: "Vali, kui palju aega Sul on <strong>hetkel</strong> ettevalmistuseks. Anname Sulle stsenaariumi, mis hoiab lapse iseseisvalt tegevuses 5-30+ minutit.",
                 heroCta: "Vaata lahendusi",
                 selectionTitle: "Kui palju aega Sul praegu ettevalmistuseks on?",
-                selectionDesc: "Vali üks variant ja saa koheselt kasutamisvalmis skript",
+                selectionDesc: "Vali üks ja näed, mida täpselt öelda",
                 prepLabel: "Ettevalmistus",
                 activityLabel: "Laps tegevuses",
                 prep30sec: "30 sek",
@@ -1128,10 +1129,10 @@
             en: {
                 announcement: "100% free – no registration required",
                 heroTitle: "Is your child bored and you need to focus on work?",
-                heroDesc: "Choose how much time you have <strong>right now</strong> for preparation. We'll give you a scenario that keeps your child busy independently for 15-30+ minutes.",
+                heroDesc: "Choose how much time you have <strong>right now</strong> for preparation. We'll give you a scenario that keeps your child busy independently for 5-30+ minutes.",
                 heroCta: "View solutions",
                 selectionTitle: "How much time do you have for preparation right now?",
-                selectionDesc: "Choose an option and get a ready-to-use script instantly",
+                selectionDesc: "Pick one and see exactly what to say",
                 prepLabel: "Preparation",
                 activityLabel: "Child engaged",
                 prep30sec: "30 sec",
