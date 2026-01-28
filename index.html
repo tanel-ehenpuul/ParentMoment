@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KidHelper - Lapsel igav? Vajad rahu?</title>
+    <title>ParentMoment - Lapsel igav? Vajad rahu?</title>
     <meta name="description" content="Tasuta stsenaariumid lapsevanematele: anna lapsele põnev ülesanne ja saa töörahu. Vali aeg, saa skript.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1172,11 +1172,11 @@
             }
         };
 
-        let currentLang = localStorage.getItem('kidhelper-lang') || 'en';
+        let currentLang = localStorage.getItem('parentmoment-lang') || 'en';
 
         function setLanguage(lang) {
             currentLang = lang;
-            localStorage.setItem('kidhelper-lang', lang);
+            localStorage.setItem('parentmoment-lang', lang);
             
             // Update all elements with data-i18n attribute
             document.querySelectorAll('[data-i18n]').forEach(el => {
