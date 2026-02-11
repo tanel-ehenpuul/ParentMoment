@@ -1358,6 +1358,11 @@
         }
 
         function requestMoreScripts() {
+            // Track with Umami programmatically for reliable registration
+            if (typeof umami !== 'undefined') {
+                umami.track('more-scripts-clicked', { action: 'interest-registered' });
+            }
+
             const toast = document.getElementById('toast');
             toast.textContent = translations[currentLang].moreScriptsToast;
             toast.classList.add('success');
