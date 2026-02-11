@@ -1308,8 +1308,6 @@
             // Scroll to top smoothly
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // Track click (console for now - replace with analytics)
-            console.log('Scenario clicked:', id);
         }
 
         function closeScenario() {
@@ -1352,9 +1350,6 @@
             setTimeout(() => {
                 toast.classList.remove('show');
             }, 3000);
-            
-            // Log feedback (replace with actual analytics/database)
-            console.log('Feedback:', { scenario, type, timestamp: new Date().toISOString() });
             
             // Close scenario after short delay
             setTimeout(() => {
