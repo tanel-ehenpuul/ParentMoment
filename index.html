@@ -626,6 +626,54 @@
                 justify-content: center;
             }
         }
+
+        /* More Scripts CTA */
+        .more-scripts-cta {
+            text-align: center;
+            padding: 3rem 1.5rem 4rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .more-scripts-cta .cta-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .more-scripts-cta h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-midnight-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .more-scripts-cta p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .more-scripts-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--primary-gradient);
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .more-scripts-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+
         /* Top Announcement Bar */
         .announcement-bar {
             background: linear-gradient(90deg, #10b981 0%, #059669 100%);
@@ -893,6 +941,15 @@
         </div>
     </section>
 
+    <!-- More Scripts CTA -->
+    <section class="more-scripts-cta" id="more-scripts-cta">
+        <h3 data-i18n="moreScriptsTitle">Want more scripts like these?</h3>
+        <p data-i18n="moreScriptsDesc">We're working on new scenarios for different ages and situations. Let us know you're interested and we'll notify you when they're ready!</p>
+        <button class="more-scripts-btn" onclick="requestMoreScripts()" data-umami-event="more-scripts-clicked" data-umami-event-action="interest-registered">
+            <span data-i18n="moreScriptsButton">Yes, I want more!</span>
+        </button>
+    </section>
+
     <!-- Scenario 1: Color Detective -->
     <section class="scenario-section" id="scenario-1">
         <div class="scenario-card">
@@ -1131,7 +1188,11 @@
                 feedbackNegative: "Ei toiminud / Laps tüdines",
                 backButton: "Tagasi valikute juurde",
                 toastPositive: "Tore! Salvestasime Sinu tagasiside. Aitäh!",
-                toastNegative: "Selge, panime kirja. Proovime järgmine kord paremat lahendust!"
+                toastNegative: "Selge, panime kirja. Proovime järgmine kord paremat lahendust!",
+                moreScriptsTitle: "Soovid rohkem selliseid stsenaariume?",
+                moreScriptsDesc: "Töötame uute stsenaariumide kallal erinevatele vanustele ja olukordadele. Anna meile teada, et oled huvitatud!",
+                moreScriptsButton: "Jah, tahan rohkem!",
+                moreScriptsToast: "Aitäh! Panime Sinu huvi kirja."
             },
             en: {
                 announcement: "100% free – no registration required",
@@ -1175,7 +1236,11 @@
                 feedbackNegative: "Didn't work / Child got bored",
                 backButton: "Back to options",
                 toastPositive: "Great! We saved your feedback. Thanks!",
-                toastNegative: "Got it, noted. We'll try a better solution next time!"
+                toastNegative: "Got it, noted. We'll try a better solution next time!",
+                moreScriptsTitle: "Want more scripts like these?",
+                moreScriptsDesc: "We're working on new scenarios for different ages and situations. Let us know you're interested!",
+                moreScriptsButton: "Yes, I want more!",
+                moreScriptsToast: "Thanks! We've noted your interest."
             }
         };
 
@@ -1229,6 +1294,9 @@
             // Hide selection
             document.getElementById('selection-section').style.display = 'none';
             
+            // Hide more scripts CTA
+            document.getElementById('more-scripts-cta').style.display = 'none';
+            
             // Hide all scenarios
             document.querySelectorAll('.scenario-section').forEach(el => {
                 el.classList.remove('active');
@@ -1255,6 +1323,9 @@
             
             // Show selection
             document.getElementById('selection-section').style.display = 'block';
+            
+            // Show more scripts CTA
+            document.getElementById('more-scripts-cta').style.display = 'block';
             
             // Scroll to selection
             document.getElementById('selection-section').scrollIntoView({ 
@@ -1289,6 +1360,23 @@
             setTimeout(() => {
                 closeScenario();
             }, 1500);
+        }
+
+        function requestMoreScripts() {
+            const toast = document.getElementById('toast');
+            toast.textContent = translations[currentLang].moreScriptsToast;
+            toast.classList.add('success');
+            toast.classList.add('show');
+
+            // Disable the button to prevent duplicate clicks
+            const btn = document.querySelector('.more-scripts-btn');
+            btn.disabled = true;
+            btn.style.opacity = '0.6';
+            btn.style.cursor = 'default';
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
         }
 
         // Add slight parallax effect to hero on scroll
