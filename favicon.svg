@@ -10,6 +10,4 @@
   <circle cx="40" cy="26" r="4.5" fill="rgba(255,255,255,0.85)"/>
   <path d="M34 35 Q34 31 40 31 Q46 31 46 35 L46 46 Q46 48 44 48 L36 48 Q34 48 34 46 Z" fill="rgba(255,255,255,0.85)"/>
   
-  <!-- Connecting heart/bond detail -->
-  <path d="M33 38 Q35 34 37 38" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
 </svg>
